@@ -25,19 +25,7 @@ public class SecurityConfig {
         http
             .csrf().disable()
             .authorizeHttpRequests()
-            .antMatchers(
-                "/auth/**",
-                "/api/products/**",
-                "/api/payments/**",
-                "/", 
-                "/index.html", 
-                "/error", 
-                "/favicon.ico", 
-                "/css/**", 
-                "/js/**", 
-                "/images/**", 
-                "/static/**"
-            ).permitAll()
+            .antMatchers("/auth/**", "/api/products/**", "/api/payments/**").permitAll()
             .anyRequest().authenticated()
             .and()
             .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
