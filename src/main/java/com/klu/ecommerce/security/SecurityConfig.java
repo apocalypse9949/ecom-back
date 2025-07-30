@@ -23,12 +23,25 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
-            .csrf().disable()  // 🔹 Disable CSRF for API requests
+            .csrf().disable()
             .authorizeHttpRequests()
-            .antMatchers("/auth/**", "/api/products/**", "/api/payments/**").permitAll()
+            .antMatchers(
+                "/auth/**",
+                "/api/products/**",
+                "/api/payments/**",
+                "/", 
+                "/index.html", 
+                "/error", 
+                "/favicon.ico", 
+                "/css/**", 
+                "/js/**", 
+                "/images/**", 
+                "/static/**"
+            ).permitAll()
             .anyRequest().authenticated()
             .and()
             .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+
         return http.build();
     }
 
